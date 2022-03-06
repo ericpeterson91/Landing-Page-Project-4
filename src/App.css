@@ -1,3 +1,11 @@
+:root {
+  --cream: #ead9b7;
+  --wood: #837761;
+  --yellow: #fdd340;
+  --coffee: #170801;
+  --grey: #b8aaa0;
+}
+
 .App {
   text-align: center;
 }

@@ -1,4 +1,5 @@
 const Todo = require('../models/Todo');
+const User = require('../models/User')
 
 module.exports = {
     getTodos,
@@ -24,8 +25,25 @@ async function createTodo(req, res) {
   }
 }
 
+
+
+
 async function deleteTodo(req, res) {
     try {
+      const user = await User.findById(req.user.id)
+      const todo = await Todo.findById(req.params.id)
+      
+      if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+      }
+
+      if (todo.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('User not authorized')
+      }
+      
+
       await Todo.findByIdAndDelete(req.params.id)
       res.status(200).json('ok')            
     } catch(err) {

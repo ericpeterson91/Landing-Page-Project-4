@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
   name: {type: String, required: true},
   email: {
     type: String,
     unique: true,
-    trim: true, // trims whitespace if your user types something like " alex@123.com " into "alex@123.com"
+    trim: true, 
     lowercase: true,
     required: true
   },
@@ -27,4 +27,6 @@ const userSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User

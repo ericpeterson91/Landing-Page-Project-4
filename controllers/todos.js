@@ -9,7 +9,9 @@ module.exports = {
 
 async function getTodos(req, res) {
   try {
-    await Todo.find({user: req.user._id}).sort({createdAt:'desc'}).exec();// 1. grab all items from DB
+    let todos = await Todo.find({})
+    console.log(todos)
+    // await Todo.find({user: req.user._id}).sort({createdAt:'desc'}).exec();// 1. grab all items from DB
     res.status(200).json(todos)        
   } catch(err) {
     res.status(400).json(err);
@@ -18,8 +20,8 @@ async function getTodos(req, res) {
 
 async function createTodo(req, res) {
   try {
-    await Todo.create({text: req.body.text, user: req.user._id})
-    res.status(201).json('ok')           
+    const todo = await Todo.create({text: req.body.text})
+    res.status(200).json(todo)           
   } catch(err) {
     res.status(400).json(err);
   }
@@ -51,3 +53,6 @@ async function deleteTodo(req, res) {
     }
   }
 
+
+
+  // user: req.user._id

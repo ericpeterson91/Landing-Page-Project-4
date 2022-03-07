@@ -11,8 +11,11 @@ function Todos() {
     GetTodos()
     console.log(todos)
   }, [])
+
+  
   
   const GetTodos = () => {
+    console.log('function activated')
     fetch(API_BASE + "/api/todos")
     .then(res => res.json())
     .then(data => setTodos(data))
@@ -20,7 +23,13 @@ function Todos() {
   }
 
   return (
-    <div>Todos</div>
+    //greet user with a custom API here
+    <div>
+      {/* <button onClick={() => GetTodos()}>todos</button>
+      {todos.map(todo => {
+      <p>{todo.text}</p>
+    })} */}
+    </div>
   )
 }
 

@@ -5,22 +5,19 @@ const TodoSchema = new Schema({
     
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        //change back to true
+        required: false,
         ref: 'User'
     },
     text: {
         type: String,
         required: true
     },
-    complete: {
-        type: Boolean,
-        default: false 
-    },
-    timestamp: {
-        type: String,
-        default: Date.now()
+},
+    { 
+        timestamps: true
     }
-})
+)
 
 const Todo = mongoose.model("Todo", TodoSchema)
 

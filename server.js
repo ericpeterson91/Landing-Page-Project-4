@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cors = require('cors');
 // const { default: Todo } = require('./src/components/Todo');
+const port = process.env.PORT || 3001;
 
 require('dotenv').config();
 require('./config/database');
@@ -31,7 +32,6 @@ app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 
-const port = process.env.PORT || 3001;
 
 app.listen(port, function() {
   console.log(`Express app running on port ${port}`)

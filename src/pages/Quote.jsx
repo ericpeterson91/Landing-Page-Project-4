@@ -8,7 +8,7 @@ function Quote() {
 
     return (
         <div className="container">
-    <button onClick={quotes}>Click for motivation</button>
+    <button className="btn-quote" onClick={quotes}>Click for motivation</button>
     <h6 className="quote"></h6>
     <h5 className="author"></h5>
     

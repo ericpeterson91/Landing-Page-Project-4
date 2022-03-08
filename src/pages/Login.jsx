@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './css/Login.css'
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -20,23 +21,24 @@ function Login() {
     }
 
   return (
-    <>
+    <div className="login-container">
     <section>
-        <h1>Log in</h1>
-        <p>Log back in to use your To Do list</p>
+        <h1>Log In</h1>
+        {/* <p>Log back in to use your To Do list</p> */}
 
     </section>
-    <section>
+    <section className="input">
         <form onSubmit={onSubmit}>  
             <div>
-            <input type="email" className='form-control' id="email" name="email" value="{email}" placeholder="Enter your email" onChange={onChange}/>
+            <input type="email" className='form-control' id="email" name="email"  placeholder="Enter your email" onChange={onChange}/>
             </div>
             <div>
-            <input type="password" className='form-control' id="password" name="password" value="{password}" placeholder="Enter your password" onChange={onChange}/>
+            <input type="password" className='form-control' id="password" name="password"  placeholder="Enter your password" onChange={onChange}/>
             </div>
+            <button className="btn-login">Log In</button>
         </form>
     </section>
-    </>
+    </div>
   )
 }
 

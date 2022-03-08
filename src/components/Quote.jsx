@@ -10,6 +10,7 @@ function Quote() {
     <button onClick={quotes}>Motivate yourself!</button>
     <h5></h5>
     <h6 className="result"></h6>
+    
     </div>
     )
 }

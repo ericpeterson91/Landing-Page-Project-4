@@ -8,7 +8,7 @@ import Todos from './pages/Todos';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
-import Quote from './components/Quote'
+
 
 
 function App() {
@@ -32,7 +32,6 @@ function App() {
           </Switch>
         </div>
       </Router>
-      <Quote />
     </div>
   )
 

@@ -19,8 +19,9 @@ async function getTodos(req, res) {
 }
 
 async function createTodo(req, res) {
+  // add user: req.body._id to create object later
   try {
-    const todo = await Todo.create({text: req.body.text, user: req.user._id})
+    const todo = await Todo.create({text: req.body.text})
     res.status(200).json(todo)           
   } catch(err) {
     res.status(400).json(err);

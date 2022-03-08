@@ -2,12 +2,12 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import React, { Component, useState, useEffect } from 'react';
 import Axios from "axios"
-import Todo from "./components/Todo"
 
 import Todos from './pages/Todos';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
+import Quote from './pages/Quote'
 
 
 
@@ -25,6 +25,8 @@ function App() {
           <Switch>
           <Route path='/' exact render={(props) => (
               <Todos {...props}/>)}/>
+           <Route path='/motivate' exact render={(props) => (
+              <Quote {...props}/>)}/>
             <Route path='/signup' render={(props) => (
               <Signup {...props}/>)}/>
             <Route path='/login' render={(props) => (

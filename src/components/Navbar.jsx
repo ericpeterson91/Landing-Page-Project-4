@@ -11,6 +11,9 @@ function Navbar() {
                 <Link to ='/'>To dos</Link>
             </li>
             <li>
+                <Link to='/motivate'>Motivational quote</Link>
+            </li>
+            <li>
                 <Link to='/signup'>Sign up</Link>
             </li>
             <li>

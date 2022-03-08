@@ -1,4 +1,5 @@
 import React from 'react'
+import './css/Quote.css'
 
 function Quote() {
   
@@ -6,10 +7,10 @@ function Quote() {
    
 
     return (
-        <div>
-    <button onClick={quotes}>Motivate yourself!</button>
-    <h5></h5>
-    <h6 className="result"></h6>
+        <div className="container">
+    <button onClick={quotes}>Click for motivation</button>
+    <h6 className="quote"></h6>
+    <h5 className="author"></h5>
     
     </div>
     )

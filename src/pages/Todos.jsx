@@ -4,36 +4,75 @@ import Axios from 'axios'
 import "./css/Todos.css"
 
 
+
 class Todos extends React.Component {
 
   state = {
-    todos: []
+    todos: [],
+    text: ''
   }
 
-  addTodo = async () => {
+  //  'Authorization' 'Bearer ' + jwt
+
+  addTodo = async (e) => {
+    e.preventDefault()
     try {
-      let jwt = localStorage.getItem('token')
+      // let jwt = localStorage.getItem('token')
       let fetchResponse = await fetch("/api/todos", {
         method: "POST",
-        headers: {"Content-Type": "application/json",'Authorization': 'Bearer ' + jwt},
-        body: JSON.stringify({todos: this.state.todos}) // <-- send this object to server
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({text: this.state.text}) // <-- send this object to server
         }) 
       let serverResponse = await fetchResponse.json() // <-- decode fetch response
       console.log("Success:", serverResponse)   // <-- log server response
 
-      this.setState({todos: []}) // if order sent without errors, set state to empty
+      let fetchTodosReponse = await fetch('api/todos')
+      let todoList = await fetchTodosReponse.json()
+      console.log(todoList)
+      console.log(serverResponse)
+      
+      this.setState({todos: todoList, text: ''}) // if order sent without errors, set state to empty
     } catch (err) {
       console.error("Error:", err) // <-- log if error 
     }
   }
   
+ async componentDidMount() {
+   try {
+    let fetchTodosReponse = await fetch('api/todos')
+    let todoList = await fetchTodosReponse.json()
  
+    this.setState({
+      todos: todoList
+    })
+   } catch (err) {
+     console.error('error' + err)
+   }
+ }
+
+ handleChange = (e) => {
+   this.setState({
+     text: e.target.value,
+     error: ""
+   })
+ }
   
     render(){
 
-     
-    
     return (
+      <div>
+        <div>
+        {/* { (this.state.todos.length > 0) ? */}
+        <h1>Todos:</h1>
+        {/* {this.state.todos.map(t => ( 
+          <div key={t.text}>
+            <div>{t.text}</div>
+          </div> */}
+          ))}
+          
+          <h1>No todos</h1>
+          </div>
+    
       <div className="todo-container">
       <section>
         <h1>Add to do</h1>
@@ -41,9 +80,10 @@ class Todos extends React.Component {
 
      </section>
       <form onSubmit={this.addTodo}>
-        <input type="text"></input>
+        <input  value={this.state.text} onChange={this.handleChange} type="text"></input>
         <button className="btn-todo" type="submit">Add</button>
       </form>
+      </div>
       </div>
   )}
     }

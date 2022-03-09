@@ -20,7 +20,7 @@ class App extends React.Component  {
 
   state = {
     user:null,
-    name: null
+    // name: null
   }
   
   setUserInState = (incomingUserData) => {

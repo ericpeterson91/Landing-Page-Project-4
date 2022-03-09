@@ -24,6 +24,11 @@ class App extends React.Component  {
     this.setState({ user: incomingUserData})
   }
 
+  removeUserFromState = () => {
+    this.setState({ user: null })
+    localStorage.removeItem('token')
+  }
+
   componentDidMount() {
     let token = localStorage.getItem('token')
     if (token) {
@@ -37,6 +42,9 @@ class App extends React.Component  {
       }
     }
   }
+
+  
+  
 
   render(){
   return (
@@ -53,7 +61,7 @@ class App extends React.Component  {
             <Route path='/motivate' exact render={(props) => (
                 <Quote {...props}/>)}/>
             <Route path='/logout' render={(props) => (
-              <Logout {...props}/>)}/>
+              <Logout removeUserFromState={this.removeUserFromState} {...props}/>)}/>
           </Switch>
          {/* :  */}
          <Switch>

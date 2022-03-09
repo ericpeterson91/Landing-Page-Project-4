@@ -69,7 +69,7 @@ render(){
             <div>
             <input type="password" className='form-control' id="confirm" name="confirm" value={this.state.confirm} placeholder="Confirm your password" onChange={this.onChange} required />
             </div>
-            <button type="submit" className="btn-signup">Sign up</button>
+            <a href="/"><button type="submit" className="btn-signup">Sign up</button></a>
         </form>
     </section>
     </div>

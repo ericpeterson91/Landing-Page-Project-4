@@ -40,9 +40,9 @@ class Todos extends React.Component {
         {/* <p>Log back in to use your To Do list</p> */}
 
      </section>
-      <form >
+      <form onSubmit={this.addTodo}>
         <input type="text"></input>
-        <button className = "btn-todo" type="submit">Add</button>
+        <button className="btn-todo" type="submit">Add</button>
       </form>
       </div>
   )}

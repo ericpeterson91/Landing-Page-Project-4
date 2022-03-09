@@ -7,14 +7,38 @@ import Todos from './pages/Todos';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
+// import NavbarOut from './components/NavbarOut'
 import Quote from './pages/Quote'
+import Logout from './pages/Logout'
 
 
 
-function App() {
+class App extends React.Component  {
   
-  
 
+  state = {
+    user:null,
+  }
+  
+  setUserInState = (incomingUserData) => {
+    this.setState({ user: incomingUserData})
+  }
+
+  componentDidMount() {
+    let token = localStorage.getItem('token')
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1])); // decode token
+      if (payload.exp < Date.now() / 1000) {  // Check if our token is expired, and remove if it is (standard/boilerplate)
+        localStorage.removeItem('token');
+        token = null;
+      } else { // token not expired! our user is still 'logged in'. Put them into state.
+        let userDoc = payload.user // grab user details from token
+        this.setState({user: userDoc})      
+      }
+    }
+  }
+
+  render(){
   return (
     <div>
       
@@ -22,22 +46,29 @@ function App() {
       <Router>
         <Navbar />
         <div>
+          {/* { this.state.user ? */}
           <Switch>
-          <Route path='/' exact render={(props) => (
-              <Todos {...props}/>)}/>
-           <Route path='/motivate' exact render={(props) => (
-              <Quote {...props}/>)}/>
-            <Route path='/signup' render={(props) => (
-              <Signup {...props}/>)}/>
-            <Route path='/login' render={(props) => (
-              <Login {...props}/>)}/>
+            <Route path='/' exact render={(props) => (
+                <Todos {...props}/>)}/>
+            <Route path='/motivate' exact render={(props) => (
+                <Quote {...props}/>)}/>
+            <Route path='/logout' render={(props) => (
+              <Logout {...props}/>)}/>
           </Switch>
+         {/* :  */}
+         <Switch>
+            <Route path='/signup' render={(props) => (
+              <Signup setUserInState={this.setUserInState} {...props}/>)}/>
+            <Route path='/login' render={(props) => (
+              <Login setUserInState={this.setUserInState} {...props}/>)}/>
+          </Switch>
+         {/* } */}
         </div>
       </Router>
     </div>
   )
 
-
+            }
   
   }
 

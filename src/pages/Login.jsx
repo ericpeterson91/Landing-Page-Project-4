@@ -1,45 +1,70 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
 import './css/Login.css'
 
-function Login() {
-    const [formData, setFormData] = useState({
+class Login extends React.Component {
+    state = {
         email: '',
         password: '',
-    })
+        error: ''
+      };
+    
+    
 
-    const {name, email, password, password2} = formData
+    onChange = (evt) => {
+        this.setState({
+          [evt.target.name]: evt.target.value,
+          error: ''
+        });
+      };
 
-    const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
+    onSubmit = async (evt) => {
+        evt.preventDefault();
+    try {
+      // 1. POST our new user info to the server
+      const fetchResponse = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: this.state.email, password: this.state.password, })
+      })
+
+      // 2. Check "fetchResponse.ok". False means status code was 4xx from the server/controller action
+      if (!fetchResponse.ok) throw new Error('Fetch failed - Bad request')
+
+      let token = await fetchResponse.json() // 3. decode fetch response: get jwt token from srv
+      localStorage.setItem('token', token);  // 4. Stick token into localStorage
+
+      const userDoc = JSON.parse(atob(token.split('.')[1])).user; // 5. Decode the token + put user document into state
+      this.props.setUserInState(userDoc)
+
+    } catch (err) {
+      console.log("SignupForm error", err)
+      this.setState({ error: 'Sign Up Failed - Try Again' });
     }
+  }
+    
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-    }
 
+render(){
   return (
     <div className="login-container">
     <section>
         <h1>Log In</h1>
-        {/* <p>Log back in to use your To Do list</p> */}
 
     </section>
-    <section className="input">
-        <form onSubmit={onSubmit}>  
+    <section>
+        <form autoComplete="off" onSubmit={this.onSubmit}>
             <div>
-            <input type="email" className='form-control' id="email" name="email"  placeholder="Enter your email" onChange={onChange}/>
+            <input type="email" className='form-control' id="email" name="email"value={this.state.email}  placeholder="Enter your email" onChange={this.onChange} required />
             </div>
             <div>
-            <input type="password" className='form-control' id="password" name="password"  placeholder="Enter your password" onChange={onChange}/>
+            <input type="password" className='form-control' id="password" name="password" value={this.state.password} placeholder="Enter your password" onChange={this.onChange} required />
             </div>
-            <button className="btn-login">Log In</button>
+            <button type="submit" className="btn-login">Log in</button>
         </form>
     </section>
     </div>
   )
+}
 }
 
 export default Login

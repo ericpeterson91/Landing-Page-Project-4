@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import './css/Login.css'
+import './css/Logout.css'
+
 
 function Logout(props) {
     
   return (
-    <div className="login-container">
-        <button onClick={props.removeUserFromState}>Logout</button>
+    <div className="logout-container">
+        You are successfully logged out. See you soon!
     </div>
   )
 }

@@ -9,7 +9,7 @@ module.exports = {
 
 async function getTodos(req, res) {
   try {
-    let todos = await Todo.find({ user: req.user._id})
+    let todos = await Todo.find({ user: req.user._id}).exec()
     console.log(todos)
     // await Todo.find({user: req.user._id}).sort({createdAt:'desc'}).exec();// 1. grab all items from DB
     res.status(200).json(todos)        
@@ -21,7 +21,7 @@ async function getTodos(req, res) {
 async function createTodo(req, res) {
   // add user: req.body._id to create object later
   try {
-    const todo = await Todo.create({text: req.body.text})
+    const todo = await Todo.create({text: req.body.text, user: req.user._id})
     res.status(200).json(todo)           
   } catch(err) {
     res.status(400).json(err);

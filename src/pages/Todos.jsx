@@ -31,6 +31,7 @@ class Todos extends React.Component {
   
     render(){
 
+     
     
     return (
       <div className="todo-container">
@@ -41,7 +42,7 @@ class Todos extends React.Component {
      </section>
       <form >
         <input type="text"></input>
-        <button className = "btn-todo" type="submit">fdfd</button>
+        <button className = "btn-todo" type="submit">Add</button>
       </form>
       </div>
   )}

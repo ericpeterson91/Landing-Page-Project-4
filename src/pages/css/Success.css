@@ -12,14 +12,13 @@
   body {
       background-color: var(--light-cream);
       font-family: 'Fredoka', sans-serif;   
-      
+    
   }
 
-  .logout-container {
+  .login-container {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        font-size: 28px;
         justify-content: center;
         align-items: center;
         width: 100vw;

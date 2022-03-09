@@ -1,5 +1,6 @@
 import React from 'react'
 import './css/Signup.css'
+import { Link } from 'react-router-dom'
 
 class Signup extends React.Component {
     state = {
@@ -69,7 +70,7 @@ render(){
             <div>
             <input type="password" className='form-control' id="confirm" name="confirm" value={this.state.confirm} placeholder="Confirm your password" onChange={this.onChange} required />
             </div>
-            <a href="/"><button type="submit" className="btn-signup">Sign up</button></a>
+            <button type="submit"  className="btn-signup">Sign up</button>
         </form>
     </section>
     </div>

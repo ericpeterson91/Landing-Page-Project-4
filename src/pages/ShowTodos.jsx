@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class OrderHistoryPage extends React.Component {
+export default class ShowTodos extends React.Component {
     state = {
       todoHistory: []
     }
@@ -21,10 +21,12 @@ export default class OrderHistoryPage extends React.Component {
   
     render() {
       return (
-        <main className="OrderHistoryPage">
-          {todoHistory.map(todos =>
+        <main >
+          {/* {todoHistory.map(todos =>
             <div>{todos}</div>
-            )}
+            )} */}
+
+            hello
         </main>
       )
     }

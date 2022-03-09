@@ -10,6 +10,8 @@ import Navbar from './components/Navbar';
 // import NavbarOut from './components/NavbarOut'
 import Quote from './pages/Quote'
 import Logout from './pages/Logout'
+import Success from './pages/Success'
+import ShowTodos from './pages/ShowTodos'
 
 
 
@@ -18,14 +20,17 @@ class App extends React.Component  {
 
   state = {
     user:null,
+    name: null
   }
   
   setUserInState = (incomingUserData) => {
     this.setState({ user: incomingUserData})
+    // this.setState({ name: incomingUserData.name})
   }
 
   removeUserFromState = () => {
     this.setState({ user: null })
+    // this.setState({name: null })
     localStorage.removeItem('token')
   }
 
@@ -43,36 +48,49 @@ class App extends React.Component  {
     }
   }
 
+  // getUserName() {
+  //   let user = JSON.parse(localStorage.getItem('user'))
+
+  // }
   
-  
+  // let user = JSON.parse(localStorage.getItem('user'))
 
   render(){
   return (
     <div>
       
       
+      
       <Router>
-        <Navbar />
+        
+        <Navbar removeUserFromState={this.removeUserFromState}/>
         <div>
-          {/* { this.state.user ? */}
+          { this.state.user ?
           <Switch>
-            <Route path='/' exact render={(props) => (
+            <Route path='/todos' exact render={(props) => (
                 <Todos {...props}/>)}/>
+            <Route path='/showTodos' exact render={(props) => (
+                <ShowTodos {...props}/>)}/>
+            {/* <Route path='/success' exact render={(props) => (
+                <Success {...props}/>)}/>     */}
             <Route path='/motivate' exact render={(props) => (
                 <Quote {...props}/>)}/>
             <Route path='/logout' render={(props) => (
-              <Logout removeUserFromState={this.removeUserFromState} {...props}/>)}/>
+              <Logout  {...props}/>)}/>
           </Switch>
-         {/* :  */}
+          :  
          <Switch>
             <Route path='/signup' render={(props) => (
               <Signup setUserInState={this.setUserInState} {...props}/>)}/>
             <Route path='/login' render={(props) => (
               <Login setUserInState={this.setUserInState} {...props}/>)}/>
+            <Route path='/logout' render={(props) => (
+              <Logout {...props}/>)}/>
           </Switch>
-         {/* } */}
+          }
         </div>
       </Router>
+      
     </div>
   )
 

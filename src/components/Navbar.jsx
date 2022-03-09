@@ -2,13 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Navbar.css"
 
-function Navbar() {
+function Navbar(props) {
   return (
     <nav>
         
         <ul>
+             <li className="todo">
+                <Link className="link" to='/todos'>To-dos</Link>
+            </li>
             <li className="todo">
-                <Link className="link" to ='/'>To-dos</Link>
+                <Link className="link" to='/showTodos'>Show To-dos</Link>
             </li>
             <li>
                 <Link className="link" to='/motivate'>Motivational quote</Link>
@@ -20,7 +23,7 @@ function Navbar() {
                 <Link className="link" to='/login'>Login</Link>
             </li>
             <li>
-                <Link className="link" to='/logout'>Log Out</Link>
+                <Link className="link" onClick={props.removeUserFromState} to='/logout'>Log Out</Link>
             </li>
         </ul>
        

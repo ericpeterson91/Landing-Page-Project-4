@@ -61,3 +61,10 @@
       cursor: pointer;
       font-size: 17px;
   }
+
+  .signin {
+      display: flex;
+     
+      align-items: center;
+      justify-content: center;
+  }

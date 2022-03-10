@@ -48,11 +48,14 @@ class Login extends React.Component {
 render(){
   return (
     <div className="login-container">
-    <section>
-        <h1>Log In</h1>
+    
+    {(!this.props.user) ?
+    
+    
 
-    </section>
+   
     <section>
+      <h1>Log In</h1>
         <form autoComplete="off" onSubmit={this.onSubmit}>
             <div>
             <input type="email" className='form-control' id="email" name="email"value={this.state.email}  placeholder="Enter your email" onChange={this.onChange} required />
@@ -63,6 +66,11 @@ render(){
             <button type="submit" className="btn-login">Log in</button>
         </form>
     </section>
+    :
+    <section>
+      <h1 className="login">Successfully logged in</h1>
+    </section>
+    }
     </div>
   )
 }

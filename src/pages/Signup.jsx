@@ -54,11 +54,11 @@ render(){
   return (
     <div className="signup-container">
       
+   
+
+      {(!this.props.user) ?
     <section>
         <h1>Sign Up</h1>
-
-    </section>
-    <section>
         <form autoComplete="off" onSubmit={this.onSubmit}>
             <div>
             <input type="text" className='form-control' id="name" name="name" value={this.state.name}  placeholder="Enter your name" onChange={this.onChange} required />
@@ -75,6 +75,11 @@ render(){
             <button type="submit"  className="btn-signup">Sign up</button>
         </form>
     </section>
+    :
+    <section>
+      <h1 className="signin">Successfully signed up</h1>
+    </section>
+    }
     </div>
   )
 }

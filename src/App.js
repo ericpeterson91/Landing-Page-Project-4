@@ -71,23 +71,25 @@ class App extends React.Component  {
                 <Todos user={this.state.user} {...props}/>}/>
             <Route path='/goals' exact render={(props) => (
                 <Goals user={this.state.user} {...props}/>)}/>
-            {/* <Route path='/success' exact render={(props) => (
-                <Success {...props}/>)}/>     */}
             <Route path='/motivate' exact render={(props) => (
                 <Quote {...props}/>)}/>
+                 <Route path='/signup' render={(props) => (
+              <Signup user={this.state.user} setUserInState={this.setUserInState} {...props}/>)}/>
+            <Route path='/login' render={(props) => (
+                  <Login user={this.state.user} setUserInState={this.setUserInState} {...props}/>)}/>
             <Route path='/logout' render={(props) => (
               <Logout  {...props}/>)}/>
           </Switch>
-          :  
+         :   
          <Switch>
             <Route path='/signup' render={(props) => (
-              <Signup setUserInState={this.setUserInState} {...props}/>)}/>
+              <Signup user={this.state.user} setUserInState={this.setUserInState} {...props}/>)}/>
             <Route path='/login' render={(props) => (
-              <Login setUserInState={this.setUserInState} {...props}/>)}/>
+              <Login user={this.state.user} setUserInState={this.setUserInState} {...props}/>)}/>
             <Route path='/logout' render={(props) => (
               <Logout {...props}/>)}/>
           </Switch>
-          }
+        } 
         </div>
         
       </Router>

@@ -17,17 +17,21 @@ class Todos extends React.Component {
   addTodo = async (e) => {
     e.preventDefault()
     try {
-      // let jwt = localStorage.getItem('token')
+      let jwt = localStorage.getItem('token')
       let fetchResponse = await fetch("/api/todos", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
         body: JSON.stringify({text: this.state.text}) // <-- send this object to server
         }) 
       let serverResponse = await fetchResponse.json() // <-- decode fetch response
       console.log("Success:", serverResponse)   // <-- log server response
 
-      let fetchTodosReponse = await fetch('api/todos')
-      let todoList = await fetchTodosReponse.json()
+      //need to somehow use the json web token here again
+      let fetchTodosResponse = await fetch('api/todos', {
+        method: "GET",
+        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
+      })
+      let todoList = await fetchTodosResponse.json()
       console.log(todoList)
       console.log(serverResponse)
       
@@ -39,16 +43,45 @@ class Todos extends React.Component {
   
  async componentDidMount() {
    try {
-    let fetchTodosReponse = await fetch('api/todos')
-    let todoList = await fetchTodosReponse.json()
+    let jwt = localStorage.getItem('token')
+    let fetchTodosResponse = await fetch('api/todos', {
+      method: "GET",
+      headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
+    })
+    let todoList = await fetchTodosResponse.json()
  
     this.setState({
       todos: todoList
     })
+    // console.log('hi')
    } catch (err) {
      console.error('error' + err)
    }
- }
+ } 
+
+ componentDidUpdate(prevProps, prevState) {
+  if (prevState.todos !== this.state.todos) {
+   this.setState({
+     todos: this.state.todos
+   })
+    console.log('hi')
+  }
+}
+//   try {
+//    let jwt = localStorage.getItem('token')
+//    let fetchTodosResponse = await fetch('api/todos', {
+//      method: "GET",
+//      headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
+//    })
+//    let todoList = await fetchTodosResponse.json()
+
+//    this.setState({
+//      todos: todoList
+//    })
+//   } catch (err) {
+//     console.error('error' + err)
+//   }
+// }
 
  handleChange = (e) => {
    this.setState({
@@ -56,21 +89,54 @@ class Todos extends React.Component {
      error: ""
    })
  }
+
+  deleteOne = async (id) => {
+    console.log(this.props.user._id)
+  let jwt = localStorage.getItem('token')
+  let fetchResponse = await fetch(`api/todos/${id}/${this.props.user._id}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
+        body: JSON.stringify({text: this.state.text}) // <-- send this object to server
+        }) 
+
+   let fetchTodosResponse = await fetch('api/todos', {
+          method: "GET",
+          headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
+        })
+  let todoList = await fetchTodosResponse.json()
+  this.setState({
+    todos: todoList
+  })
+
+  console.log(id)
+ }
   
     render(){
 
     return (
       <div>
         <div>
+        { (this.state.todos.length > 0) 
+        ? this.state.todos.map(t => ( 
+          <div key={t.text}>
+            <div>{t.text}</div>
+            <button onClick={() => { this.deleteOne(t._id)}}>Delete</button>
+            
+          </div> 
+          ))
+          :
+          <h1>No todos</h1>
+        }</div>
+        <div>
         {/* { (this.state.todos.length > 0) ? */}
-        <h1>Todos:</h1>
+       
         {/* {this.state.todos.map(t => ( 
           <div key={t.text}>
             <div>{t.text}</div>
           </div> */}
-          ))}
+          {/* ))} */}
           
-          <h1>No todos</h1>
+         
           </div>
     
       <div className="todo-container">

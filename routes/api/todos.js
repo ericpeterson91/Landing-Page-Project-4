@@ -9,6 +9,6 @@ router.get('/',  todoCtrl.getTodos)
 
 router.post('/',  todoCtrl.createTodo)
 
-router.delete('/:id',  todoCtrl.deleteTodo)
+router.delete('/:id/:userid',  todoCtrl.deleteTodo)
 
 module.exports = router

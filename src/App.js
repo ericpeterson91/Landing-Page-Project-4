@@ -67,8 +67,8 @@ class App extends React.Component  {
         <div>
           { this.state.user ?
           <Switch>
-            <Route path='/todos' exact render={(props) => (
-                <Todos {...props}/>)}/>
+            <Route path='/todos'  exact render={(props) => 
+                <Todos user={this.state.user} {...props}/>}/>
             <Route path='/showTodos' exact render={(props) => (
                 <ShowTodos {...props}/>)}/>
             {/* <Route path='/success' exact render={(props) => (

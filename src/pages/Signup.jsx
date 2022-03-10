@@ -40,6 +40,7 @@ class Signup extends React.Component {
             
             const userDoc = JSON.parse(atob(token.split('.')[1])).user; // 5. Decode the token + put user document into state
             this.props.setUserInState(userDoc)
+            console.log(userDoc)
       
           } catch (err) {
             console.log("SignupForm error", err)

@@ -32,8 +32,9 @@ async function createTodo(req, res) {
 
 
 async function deleteTodo(req, res) {
-    try {
-      const user = await User.findById(req.user.id)
+  console.log(req.params)  
+  try {
+      const user = await User.findById(req.params.userid)
       const todo = await Todo.findById(req.params.id)
       
       if (!user) {
@@ -50,6 +51,7 @@ async function deleteTodo(req, res) {
       await Todo.findByIdAndDelete(req.params.id)
       res.status(200).json('ok')            
     } catch(err) {
+      console.log(err)
       res.status(400).json(err);
     }
   }

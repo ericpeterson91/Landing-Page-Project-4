@@ -6,7 +6,7 @@ const TodoSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         //change back to true
-        required: false,
+        required: true,
         ref: 'User'
     },
     text: {

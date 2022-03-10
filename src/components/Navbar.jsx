@@ -10,9 +10,6 @@ function Navbar(props) {
              <li className="todo">
                 <Link className="link" to='/todos'>To-dos</Link>
             </li>
-            <li className="todo">
-                <Link className="link" to='/showTodos'>Show To-dos</Link>
-            </li>
             <li>
                 <Link className="link" to='/motivate'>Motivational quote</Link>
             </li>

@@ -5,20 +5,20 @@ import "./css/Todos.css"
 
 
 
-class Todos extends React.Component {
+class Goals extends React.Component {
 
   state = {
-    todos: [],
+    goals: [],
     text: ''
   }
 
   //  'Authorization' 'Bearer ' + jwt
 
-  addTodo = async (e) => {
+  addGoal = async (e) => {
     e.preventDefault()
     try {
       let jwt = localStorage.getItem('token')
-      let fetchResponse = await fetch("/api/todos", {
+      let fetchResponse = await fetch("/api/goals", {
         method: "POST",
         headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
         body: JSON.stringify({text: this.state.text}) // <-- send this object to server
@@ -27,15 +27,15 @@ class Todos extends React.Component {
       console.log("Success:", serverResponse)   // <-- log server response
 
       //need to somehow use the json web token here again
-      let fetchTodosResponse = await fetch('api/todos', {
+      let fetchGoalsResponse = await fetch('api/goals', {
         method: "GET",
         headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
       })
-      let todoList = await fetchTodosResponse.json()
-      console.log(todoList)
+      let goalList = await fetchGoalsResponse.json()
+      console.log(goalList)
       console.log(serverResponse)
       
-      this.setState({todos: todoList, text: ''}) // if order sent without errors, set state to empty
+      this.setState({goals: goalList, text: ''}) // if order sent without errors, set state to empty
     } catch (err) {
       console.error("Error:", err) // <-- log if error 
     }
@@ -44,14 +44,14 @@ class Todos extends React.Component {
  async componentDidMount() {
    try {
     let jwt = localStorage.getItem('token')
-    let fetchTodosResponse = await fetch('api/todos', {
+    let fetchGoalsResponse = await fetch('api/goals', {
       method: "GET",
       headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
     })
-    let todoList = await fetchTodosResponse.json()
+    let goalList = await fetchGoalsResponse.json()
  
     this.setState({
-      todos: todoList
+      goals: goalList
     })
     // console.log('hi')
    } catch (err) {
@@ -93,19 +93,19 @@ class Todos extends React.Component {
   deleteOne = async (id) => {
     console.log(this.props.user._id)
   let jwt = localStorage.getItem('token')
-  let fetchResponse = await fetch(`api/todos/${id}/${this.props.user._id}`, {
+  let fetchResponse = await fetch(`api/goals/${id}/${this.props.user._id}`, {
         method: "DELETE",
         headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
         body: JSON.stringify({text: this.state.text}) // <-- send this object to server
         }) 
 
-   let fetchTodosResponse = await fetch('api/todos', {
+   let fetchGoalsResponse = await fetch('api/goals', {
           method: "GET",
           headers: {"Content-Type": "application/json", 'Authorization': 'Bearer ' + jwt },
         })
-  let todoList = await fetchTodosResponse.json()
+  let goalList = await fetchGoalsResponse.json()
   this.setState({
-    todos: todoList
+    goals: goalList
   })
 
   console.log(id)
@@ -118,20 +118,20 @@ class Todos extends React.Component {
     
       <div className="todo-container">
       <section>
-        <h1 className="title">Add to do</h1>
+        <h1 className="title">Add a goal</h1>
         {/* <p>Log back in to use your To Do list</p> */}
 
      </section>
-      <form onSubmit={this.addTodo}>
+      <form onSubmit={this.addGoal}>
         <input  value={this.state.text} onChange={this.handleChange} type="text"></input>
         <button className="btn-todo" type="submit">Add</button>
       </form>
       
       
-          <h2 className="todo-title">{(this.props.user.name).charAt(0).toUpperCase() + (this.props.user.name).slice(1)}'s Todo list</h2>
+          <h2 className="todo-title">{(this.props.user.name).charAt(0).toUpperCase() + (this.props.user.name).slice(1)}'s Goal list</h2>
         <div className="todos">
-        { (this.state.todos.length > 0) 
-        ? this.state.todos.map(t => ( 
+        { (this.state.goals.length > 0) 
+        ? this.state.goals.map(t => ( 
           <div key={t.text}>
             <div className="todo-item">
               <h4 className="todo-name">{t.text}</h4>
@@ -142,7 +142,7 @@ class Todos extends React.Component {
           </div> 
           ))
           :
-          <h1>No todos</h1>
+          <h1>No goals</h1>
         }
         </div>
         </div>
@@ -152,39 +152,4 @@ class Todos extends React.Component {
 
 
 
-export default Todos
-
-// const [todos, setTodos] = useState([])
-// const [newTodo, setNewTodo] = useState("")
-
-// useEffect(() => {
-  //   GetTodos()
-  //   console.log(todos)
-  // }, [])
-  
-  
-  
-  // const GetTodos = () => {
-    //   console.log('function activated')
-    //   fetch(API_BASE + "/api/todos")
-    //   .then(res => res.json())
-    //   .then(data => setTodos(data))
-    //   .catch(err => console.error("Error: " , err))
-    // }
-    
-    // const addToList = () => {
-      //   Axios.post("http://localhost:3001/api/todos", {
-        //   todo: text
-
-        // async componentDidMount() {
-        //   try {
-        //     let fetchTodosResponse =  Axios.get('localhost:3001/api/todos') // <-- get data from server (Stream object)
-        //     let todos = await fetchTodosResponse.json(); // <------- convert fetch response into a js object
-        //     let todoStrings = todos.map(t => t.text)
-        //     this.setState({ todoList: todoStrings})
-        //     console.log(todos)
-        //   } catch (err) {
-        //     console.error('ERROR:', err) // <-- log if error
-        //   }
-        // }
-    // })
+export default Goals

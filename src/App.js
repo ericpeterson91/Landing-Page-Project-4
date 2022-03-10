@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 import Quote from './pages/Quote'
 import Logout from './pages/Logout'
 import Success from './pages/Success'
-import ShowTodos from './pages/ShowTodos'
+import Goals from './pages/Goals'
 
 
 
@@ -69,8 +69,8 @@ class App extends React.Component  {
           <Switch>
             <Route path='/todos'  exact render={(props) => 
                 <Todos user={this.state.user} {...props}/>}/>
-            <Route path='/showTodos' exact render={(props) => (
-                <ShowTodos {...props}/>)}/>
+            <Route path='/goals' exact render={(props) => (
+                <Goals user={this.state.user} {...props}/>)}/>
             {/* <Route path='/success' exact render={(props) => (
                 <Success {...props}/>)}/>     */}
             <Route path='/motivate' exact render={(props) => (
@@ -89,6 +89,7 @@ class App extends React.Component  {
           </Switch>
           }
         </div>
+        
       </Router>
       
     </div>

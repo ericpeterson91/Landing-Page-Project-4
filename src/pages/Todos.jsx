@@ -122,7 +122,7 @@ class Todos extends React.Component {
           <h2 className="todo-title">
             {this.props.user.name.charAt(0).toUpperCase() +
               this.props.user.name.slice(1)}
-            's Todo list
+            's Todos
           </h2>
           <div className="todos">
             {this.state.todos.length > 0 ? (

@@ -124,7 +124,7 @@ class Goals extends React.Component {
           <h2 className="goal-title">
             {this.props.user.name.charAt(0).toUpperCase() +
               this.props.user.name.slice(1)}
-            's Goal list
+            's Goals
           </h2>
           <div className="goals">
             {this.state.goals.length > 0 ? (

@@ -18,7 +18,6 @@ const UserSchema = new Schema({
   }
 }, {
   timestamps: true,
-  // A cool mongoose trick not to send password to clients!
   toJSON: {
     transform: function(doc, ret) {
       delete ret.password;

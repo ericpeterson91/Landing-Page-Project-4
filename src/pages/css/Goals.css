@@ -15,18 +15,17 @@
     
   }
 
-  .todo-container {
+  .goal-container {
         display: flex;
         flex-direction: column;
         gap: 10px;
         justify-content: center;
         align-items: center;
         width: 100vw;
-        /* height: 100vh; */
-        position: fixed;
         text-align: center;
         font-family: 'Fredoka', sans-serif;  
         margin-top: 30px; 
+        overflow-y: scroll;
   }
 
   h1 {
@@ -50,7 +49,7 @@
         border: none;
   }
 
-  .btn-todo {
+  .btn-goal {
       color: var(--coffee);
       background-color: var(--yellow);
       margin-top: 20px;
@@ -63,41 +62,60 @@
       font-size: 18px;
   }
 
-  .todos {
-      margin-top: 30px;
-      display: grid;
-      grid-template-columns: 1fr;
+  .goals {
+    margin-top: 30px;
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    margin-bottom: 80px;
+    width: 80vw;
      
   }
 
-  .todo-btn {
-      height: 34px;
-      width: 75px;
+  .goal-btn {
+      height: 24px;
+      width: 20px;
       font-size: 14px;
       font-weight: bold;
       border: none;
       border-radius: 5px;
-      background-color: var(--cream);
+      background-color: var(--light-cream);
       cursor: pointer;
       color: var(--coffee)
   }
 
-  .todo-name {
+  .goal-name {
       display: inline;
-      font-size: 19px;
+      font-size: 24px;
+      letter-spacing: .7px;
+      font-weight: bold;
       color: var(--wood)
   }
 
-  .todo-item {
+  .goal-item {
       margin: 20px;
   }
 
-  .todo-title {
-      margin-top: 40px;
-      margin-bottom: -20px;
-      color: var(--coffee)
+  .goal-title {
+      margin-top: 50px;
+      margin-bottom: 20px;
+      color: var(--coffee);
+      font-size: 32px;
+      font-weight: normal;
   }
 
   .title {
-      color: var(--wood)
+      color: var(--wood);
+      font-size: 36px;
   }
+
+  .goal-card {
+    border: 3px solid var(--coffee);
+    border-radius: 5px;
+}
+
+.no {
+   position: fixed;
+   width: 100vw;
+   right: 0px;
+}

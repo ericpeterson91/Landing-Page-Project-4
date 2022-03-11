@@ -11,7 +11,6 @@ async function getGoals(req, res) {
   try {
     let goals = await Goal.find({ user: req.user._id}).exec()
     console.log(goals)
-    // await Todo.find({user: req.user._id}).sort({createdAt:'desc'}).exec();// 1. grab all items from DB
     res.status(200).json(goals)        
   } catch(err) {
     res.status(401).json(err);
@@ -19,7 +18,6 @@ async function getGoals(req, res) {
 }
 
 async function createGoal(req, res) {
-  // add user: req.body._id to create object later
   try {
     const goal = await Goal.create({text: req.body.text, user: req.user._id})
     res.status(200).json(goal)           
@@ -56,6 +54,3 @@ async function deleteGoal(req, res) {
     }
   }
 
-
-
-  // user: req.user._id

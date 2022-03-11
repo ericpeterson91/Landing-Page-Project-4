@@ -22,11 +22,10 @@
         justify-content: center;
         align-items: center;
         width: 100vw;
-        /* height: 100vh; */
-        position: fixed;
         text-align: center;
         font-family: 'Fredoka', sans-serif;  
         margin-top: 30px; 
+        overflow-y: scroll;
   }
 
   h1 {
@@ -46,8 +45,8 @@
       width: 240px;
       font-size: 18px;
       height: 40px;
-        border-radius: 5px;
-        border: none;
+      border-radius: 5px;
+      border: none;
   }
 
   .btn-todo {
@@ -66,38 +65,58 @@
   .todos {
       margin-top: 30px;
       display: grid;
-      grid-template-columns: 1fr;
-     
+      gap: 25px;
+      grid-template-columns: 1fr 1fr 1fr 1fr; 
+      margin-bottom: 80px;
+      width: 80vw;
+      
   }
 
   .todo-btn {
       height: 34px;
-      width: 75px;
+      width: 30px;
       font-size: 14px;
       font-weight: bold;
       border: none;
       border-radius: 5px;
-      background-color: var(--cream);
+      background-color: var(--light-cream);
       cursor: pointer;
       color: var(--coffee)
   }
 
   .todo-name {
-      display: inline;
-      font-size: 19px;
-      color: var(--wood)
+    display: inline;
+    font-size: 24px;
+    letter-spacing: .7px;
+    font-weight: bold;
+    color: var(--wood)
   }
 
   .todo-item {
       margin: 20px;
+      
   }
 
   .todo-title {
-      margin-top: 40px;
-      margin-bottom: -20px;
-      color: var(--coffee)
+      margin-top: 50px;
+      margin-bottom: 20px;
+      color: var(--coffee);
+      font-weight: normal;
+      font-size: 32px;
   }
 
   .title {
-      color: var(--wood)
+      color: var(--wood);
+      font-size: 36px;
   }
+
+  .todo-card {
+      border: 3px solid var(--coffee);
+      border-radius: 5px;
+  }
+  
+  .no {
+    position: fixed;
+    width: 100vw;
+    right: 0px;
+ }

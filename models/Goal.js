@@ -5,7 +5,6 @@ const GoalSchema = new Schema({
     
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        //change back to true
         required: true,
         ref: 'User'
     },

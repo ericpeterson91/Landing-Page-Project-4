@@ -73,15 +73,15 @@
   }
 
   .goal-btn {
-      height: 24px;
-      width: 20px;
+      height: 34px;
+      width: 30px;
       font-size: 14px;
       font-weight: bold;
       border: none;
       border-radius: 5px;
       background-color: var(--light-cream);
       cursor: pointer;
-      color: var(--coffee)
+      color: var(--wood)
   }
 
   .goal-name {
@@ -89,7 +89,7 @@
       font-size: 24px;
       letter-spacing: .7px;
       font-weight: bold;
-      color: var(--wood)
+      color: var(--coffee)
   }
 
   .goal-item {
@@ -110,7 +110,7 @@
   }
 
   .goal-card {
-    border: 3px solid var(--coffee);
+    border: 3px solid var(--wood);
     border-radius: 5px;
 }
 

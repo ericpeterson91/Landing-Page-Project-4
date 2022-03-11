@@ -112,7 +112,7 @@ class Todos extends React.Component {
             <input
               value={this.state.text}
               onChange={this.handleChange}
-              type="text"
+              type="text" autoFocus
             ></input>
             <button className="btn-todo" type="submit">
               Add

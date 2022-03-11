@@ -114,7 +114,7 @@ class Goals extends React.Component {
             <input
               value={this.state.text}
               onChange={this.handleChange}
-              type="text"
+              type="text" autoFocus
             ></input>
             <button className="btn-goal" type="submit">
               Add
